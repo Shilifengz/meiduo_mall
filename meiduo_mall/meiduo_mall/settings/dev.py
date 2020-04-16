@@ -16,6 +16,9 @@ import sys # python 模塊
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
+# 指定應用的導包路徑爲meiduo_mall/apps
+sys.path.insert(0,os.path.join(BASE_DIR,'apps'))
+
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.11/howto/deployment/checklist/
@@ -40,7 +43,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     # 完整導包路徑
-    'meiduo_mall.apps.users.apps.UsersConfig',
+    # 'meiduo_mall.apps.users.apps.UsersConfig',
+    "users.apps.UsersConfig",
+    'verifycation.apps.VerifycationConfig',
 ]
 
 MIDDLEWARE = [
@@ -148,6 +153,13 @@ CACHES = {
             "CLIENT_CLASS": "django_redis.client.DefaultClient",
         }
     },
+    "image_code": { # 图形验证码
+            "BACKEND": "django_redis.cache.RedisCache",
+            "LOCATION": "redis://127.0.0.1:6379/2",
+            "OPTIONS": {
+                "CLIENT_CLASS": "django_redis.client.DefaultClient",
+            }
+        },
 }
 # 指定session的保存方案
 SESSION_ENGINE = "django.contrib.sessions.backends.cache"
@@ -194,3 +206,6 @@ LOGGING = {
         },
     }
 }
+
+# 指定用戶模型類
+AUTH_USER_MODEL = 'users.User' # 應用名稱.模型類名稱
