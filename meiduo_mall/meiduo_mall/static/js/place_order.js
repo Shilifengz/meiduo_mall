@@ -57,3 +57,58 @@ var vm = new Vue({
         }
     }
 });
+
+
+
+
+
+
+
+
+
+// $(function () {
+//
+// });
+//
+//
+// // 提交订单
+// $('#order_btn').click(function () {
+//     var url = '/orders/commit/';
+//
+//     var address_id = $('input[name="address_id"]:checked').val();
+//     var paymethod = $('input[name="pay_method"]:checked').val();
+//     if (address_id == "") {
+//         alert("请先选择收货地址!");
+//         return;
+//     }
+//     if (paymethod == "") {
+//         alert("请先选择支付方式!");
+//         return;
+//     }
+//
+//     var params = {
+//         'address_id':address_id,
+//         'pay_method':parseInt(paymethod)
+//     };
+//
+//     $.ajax({
+//         url: url,
+//         type: 'post',
+//         data: JSON.stringify(params),
+//         contentType: 'application/json',
+//         headers: {'X-CSRFToken':getCookie('csrftoken')},
+//         success:function (response) {
+//             if (response.code == '0') {
+//                 var pay_method = $('input[name="pay_method"]:checked').val();
+//                 var payment_amount = $('.total_pay b').html();
+//                 location.href = '/orders/success/?order_id='+response.order_id
+//                             +'&payment_amount='+payment_amount
+//                             +'&pay_method='+pay_method;
+//             } else if (response.code == '4101') {
+//                 location.href = '/login/?next=/orders/settlement/';
+//             } else {
+//                 alert(response.errmsg);
+//             }
+//         }
+//     });
+// });

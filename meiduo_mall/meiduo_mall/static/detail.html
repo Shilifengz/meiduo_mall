@@ -15,25 +15,22 @@
 		<div class="header">
 			<div class="welcome fl">欢迎来到美多商城!</div>
 			<div class="fr">
-                <div class="login_btn fl" v-if="username">
-                    欢迎您：<em>[[ username ]]</em>
-                    <span>|</span>
-                    <a href="/logout/" class="quit">退出</a>
-                </div>
-                <div class="login_btn fl" v-else>
-                    <a href="/login/">登录</a>
-                    <span>|</span>
-                    <a href="/register/">注册</a>
-                </div>
-
-                <div class="user_link fl">
-                    <span>|</span>
-                    <a href="/info/">用户中心</a>
-                    <span>|</span>
-                    <a href="/carts/">我的购物车</a>
-                    <span>|</span>
-                    <a href="/orders/">我的订单</a>
-                </div>
+				<div class="login_info fl">
+					欢迎您：<em>张 山</em>
+				</div>
+				<div class="login_btn fl">
+					<a href="../templates/login.html">登录</a>
+					<span>|</span>
+					<a href="../templates/register.html">注册</a>
+				</div>
+				<div class="user_link fl">
+					<span>|</span>
+					<a href="user_center_info.html">用户中心</a>
+					<span>|</span>
+					<a href="cart.html">我的购物车</a>
+					<span>|</span>
+					<a href="user_center_order.html">我的订单</a>
+				</div>
 			</div>
 		</div>		
 	</div>
@@ -54,15 +51,20 @@
 		</div>
 
 		<div class="guest_cart fr">
-            <a href="/carts/" class="cart_name fl">我的购物车</a>
-            <div class="goods_count fl" id="show_count">[[ cart_total_count ]]</div>
-            <ul class="cart_goods_show">
-                <li v-for="cart in carts">
-                    <img :src="cart.default_image_url" alt="商品图片">
-                    <h4>[[ cart.name ]]</h4>
-                    <div>[[ cart.count ]]</div>
-                </li>
-            </ul>
+			<a href="cart.html" class="cart_name fl">我的购物车</a>
+			<div class="goods_count fl" id="show_count">2</div>
+			<ul class="cart_goods_show">
+				<li>
+					<img src="images/goods/goods001.jpg" alt="商品图片">
+					<h4>华为 HUAWEI P10 Plus 6GB+64GB 钻雕金 移动联通电信4G手机 双卡双待</h4>
+					<div>1</div>
+				</li>
+				<li>
+					<img src="images/goods/goods002.jpg" alt="商品图片">
+					<h4>Apple iPhoneX 64GB 深空灰色 移动联通电信4G手机</h4>
+					<div>1</div>
+				</li>
+			</ul>			
 		</div>
 	</div>
 
@@ -279,9 +281,9 @@
 			<div class="goods_num clearfix">
 				<div class="num_name fl">数 量：</div>
 				<div class="num_add fl">
-					<input type="text" class="num_show fl" value="1">
-					<a href="javascript:;" class="add fr">+</a>
-					<a href="javascript:;" class="minus fr">-</a>	
+                    <input type="text" class="num_show fl" value="1" v-model="sku_count" @blur="check_sku_count">
+                    <a href="javascript:;" class="add fr" @click="on_addition">+</a>
+                    <a href="javascript:;" class="minus fr" @click="on_minus">-</a>
 				</div> 
 			</div>
 			<div class="type_select">
@@ -328,24 +330,24 @@
 
 		<div class="r_wrap fr clearfix">
 			<ul class="detail_tab clearfix">
-				<li class="active">商品详情</li>
-				<li>规格与包装</li>
-				<li>商品评价(1)</li>
-				<li>售后服务</li>
+                <li @click="on_tab_content('detail')" :class="tab_content['detail']==true?'active':''">商品详情</li>
+                <li @click="on_tab_content('pack')" :class="tab_content['pack']==true?'active':''">规格与包装</li>
+                <li @click="on_tab_content('comment')" :class="tab_content['comment']==true?'active':''">商品评价(1)</li>
+                <li @click="on_tab_content('service')" :class="tab_content['service']==true?'active':''">售后服务</li>
 			</ul>
-			<div class="tab_content current">
+            <div class="tab_content current" v-show="tab_content['detail']">
 				<dl>
 					<dt>商品详情：</dt>
 					<dd>它纤薄如刃，轻盈如羽，却又比以往速度更快、性能更强大。它为你展现的，是迄今最明亮、最多彩的 Mac 笔记本显示屏。它更配备了触控栏，一个内置于键盘的玻璃面多点触控条，让你能在需要时快速取用各种工具。MacBook Pro 是对我们突破性理念的一场出色演绎，而它，也正期待着演绎你的奇思妙想。 </dd>
 				</dl>
 			</div>
-			<div class="tab_content">
+            <div class="tab_content current" v-show="tab_content['pack']">
 				<dl>
 					<dt>规格与包装：</dt>
 					<dd>它纤薄如刃，轻盈如羽，却又比以往速度更快、性能更强大。它为你展现的，是迄今最明亮、最多彩的 Mac 笔记本显示屏。它更配备了触控栏，一个内置于键盘的玻璃面多点触控条，让你能在需要时快速取用各种工具。MacBook Pro 是对我们突破性理念的一场出色演绎，而它，也正期待着演绎你的奇思妙想。 </dd>
 				</dl>
 			</div>
-			<div class="tab_content">
+            <div class="tab_content current" v-show="tab_content['comment']">
 				<ul class="judge_list_con">
 					<li class="judge_list fl">
 						<div class="user_info fl">
@@ -359,7 +361,7 @@
 					</li>			
 				</ul>
 			</div>
-			<div class="tab_content">
+            <div class="tab_content current" v-show="tab_content['service']">
 				<dl>
 					<dt>售后服务：</dt>
 					<dd>它纤薄如刃，轻盈如羽，却又比以往速度更快、性能更强大。它为你展现的，是迄今最明亮、最多彩的 Mac 笔记本显示屏。它更配备了触控栏，一个内置于键盘的玻璃面多点触控条，让你能在需要时快速取用各种工具。MacBook Pro 是对我们突破性理念的一场出色演绎，而它，也正期待着演绎你的奇思妙想。 </dd>

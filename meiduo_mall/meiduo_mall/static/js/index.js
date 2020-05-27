@@ -13,7 +13,7 @@ var vm = new Vue({
     },
     mounted(){
         // 获取购物车数据
-        this.get_carts();
+        // this.get_carts();
         this.username=getCookie('username');
         console.log(this.username);
     },
@@ -40,3 +40,27 @@ var vm = new Vue({
         }
     }
 });
+
+
+
+
+
+
+
+
+
+
+// $(function(){
+//     // 楼层选项卡
+// 	var $tab = $('.subtitle a');
+// 	var $content = $('.goods_list_con .goods_list');
+//
+// 	$tab.click(function(){
+// 		var $index = $tab.index($(this));
+// 		$(this).addClass('active').siblings().removeClass('active');
+// 		$content.eq($index).addClass('goods_list_show').siblings().removeClass('goods_list_show');
+// 	});
+//
+// 	// 获取并展示购物车数据
+// 	get_cart();
+// });

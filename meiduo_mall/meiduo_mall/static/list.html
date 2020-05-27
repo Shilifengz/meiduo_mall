@@ -17,25 +17,22 @@
 		<div class="header">
 			<div class="welcome fl">欢迎来到美多商城!</div>
 			<div class="fr">
-                <div class="login_btn fl" v-if="username">
-                    欢迎您：<em>[[ username ]]</em>
-                    <span>|</span>
-                    <a href="/logout/" class="quit">退出</a>
-                </div>
-                <div class="login_btn fl" v-else>
-                    <a href="/login/">登录</a>
-                    <span>|</span>
-                    <a href="/register/">注册</a>
-                </div>
-
-                <div class="user_link fl">
-                    <span>|</span>
-                    <a href="/info/">用户中心</a>
-                    <span>|</span>
-                    <a href="/carts/">我的购物车</a>
-                    <span>|</span>
-                    <a href="/orders/">我的订单</a>
-                </div>
+				<div class="login_info fl">
+					欢迎您：<em>张 山</em>
+				</div>
+				<div class="login_btn fl">
+					<a href="../templates/login.html">登录</a>
+					<span>|</span>
+					<a href="../templates/register.html">注册</a>
+				</div>
+				<div class="user_link fl">
+					<span>|</span>
+					<a href="user_center_info.html">用户中心</a>
+					<span>|</span>
+					<a href="cart.html">我的购物车</a>
+					<span>|</span>
+					<a href="user_center_order.html">我的订单</a>
+				</div>
 			</div>
 		</div>		
 	</div>
@@ -56,15 +53,20 @@
 		</div>
 
 		<div class="guest_cart fr">
-            <a href="/carts/" class="cart_name fl">我的购物车</a>
-            <div class="goods_count fl" id="show_count">[[ cart_total_count ]]</div>
-            <ul class="cart_goods_show">
-                <li v-for="cart in carts">
-                    <img :src="cart.default_image_url" alt="商品图片">
-                    <h4>[[ cart.name ]]</h4>
-                    <div>[[ cart.count ]]</div>
-                </li>
-            </ul>
+			<a href="cart.html" class="cart_name fl">我的购物车</a>
+			<div class="goods_count fl" id="show_count">2</div>
+			<ul class="cart_goods_show">
+				<li>
+					<img src="images/goods/goods001.jpg" alt="商品图片">
+					<h4>华为 HUAWEI P10 Plus 6GB+64GB 钻雕金 移动联通电信4G手机 双卡双待</h4>
+					<div>1</div>
+				</li>
+				<li>
+					<img src="images/goods/goods002.jpg" alt="商品图片">
+					<h4>Apple iPhoneX 64GB 深空灰色 移动联通电信4G手机</h4>
+					<div>1</div>
+				</li>
+			</ul>			
 		</div>
 	</div>
 
@@ -356,8 +358,8 @@
                 currentPage: 1,
                 totalPage: 3,
                 callback:function (current) {
-{#                    // location.href = '/list/115/1/?sort=default';#}
-{#                    // location.href = '/list/{{ category.id }}/' + current + '/?sort={{ sort }}';#}
+                    // location.href = '/list/115/1/?sort=default';
+                    // location.href = '/list/{{ category.id }}/' + current + '/?sort={{ sort }}';
                 }
             })
         });
